@@ -1,0 +1,36 @@
+name: zm_test_task
+description: "Test task"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.17
+  cupertino_icons: ^1.0.8
+  webview_flutter: ^4.10.0
+  dio: ^5.8.0+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: MuseoModerno
+      fonts:
+        - asset: assets/fonts/museo_moder/MuseoModerno-VariableFont_wght.ttf
+          weight: 900
+        - asset: assets/fonts/museo_moder/MuseoModerno-Italic-VariableFont_wght.ttf
+          style: italic
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/icons/
