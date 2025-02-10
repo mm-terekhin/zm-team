@@ -36,11 +36,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToHome() {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) => /*widget.dto.isEmpty
-            ? */const MainScreen()
-            /*: WebViewScreen(
+        builder: (_) => widget.dto.isEmpty
+            ? const MainScreen()
+            : WebViewScreen(
                 uri: widget.dto.toUri,
-              )*/,
+              ),
       ),
     );
   }
