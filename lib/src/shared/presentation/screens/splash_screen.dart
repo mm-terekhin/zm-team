@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import '../../../features/features.dart';
@@ -76,38 +78,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     textAlign: TextAlign.center,
                   ),
                   const Spacer(),
-                  // CustomPaint(
-                  //   size: Size(double.infinity, 400),
-                  //   painter: DownloadPainter(),
-                  // ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      bottom: 50,
-                    ),
-                    padding: const EdgeInsets.all(
-                      12,
-                    ),
-                    decoration: const BoxDecoration(
-                        color: Colors.black87,
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(10, (index) {
-                        return AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          margin: const EdgeInsets.symmetric(horizontal: 5),
-                          width: 12,
-                          height: 12,
-                          decoration: BoxDecoration(
-                            color: _currentDot >= index
-                                ? Colors.blueAccent
-                                : Colors.transparent,
-                            shape: BoxShape.circle,
-                          ),
-                        );
-                      }),
-                    ),
+                  CustomPaint(
+                    size: const Size(double.infinity, 250), // Размер виджета
+                    painter: LoadingPainter(),
                   ),
                 ],
               ),
@@ -117,4 +90,51 @@ class _SplashScreenState extends State<SplashScreen> {
       ],
     );
   }
+}
+
+class LoadingPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.fill;
+
+    var path = Path();
+
+    path.moveTo(0, -20);
+
+    path.conicTo(
+      size.width * 0.1,
+      0,
+      size.width * 0.3,
+      size.height * 0.05,
+      1,
+    );
+
+    path.conicTo(
+      size.width * 0.5,
+      size.height * 0.1,
+      size.width * 0.7,
+      size.height * 0.1,
+      1,
+    );
+
+    path.conicTo(
+      size.width * 0.9,
+      size.height * 0.1,
+      size.width,
+      size.height * 0.2,
+      1,
+    );
+
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+
+    path.close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
